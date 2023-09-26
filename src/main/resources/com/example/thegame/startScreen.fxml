@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="startPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.thegame.StartScreenController">
+   <children>
+      <Button layoutX="763.0" layoutY="650.0" mnemonicParsing="false" onAction="#startScreenButton" text="Start Game" />
+      <Label alignment="TOP_CENTER" layoutX="539.0" layoutY="161.0" prefHeight="154.0" prefWidth="523.0" text="Card Gaming">
+         <font>
+            <Font size="49.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></Label>
+   </children>
+</Pane>
