@@ -12,23 +12,48 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class BattleManager {
-    Comparator<VBox> vBoxComparator = new Comparator<VBox>() {
-        public int compare(VBox v1, VBox v2) {
-            String v1ID = v1.getId();
-            String v2ID = v2.getId();
-            return v1ID.compareTo(v2ID);
-        }
+    Comparator<VBox> vBoxComparator = (v1, v2) -> {
+        String v1ID = v1.getId();
+        String v2ID = v2.getId();
+        return v1ID.compareTo(v2ID);
     };
-    boolean playerTurn = true;
-    int scaleValue = 0;
-    TreeMap<VBox,Card> playerCards = new TreeMap<>(vBoxComparator);
-    TreeMap<VBox,Card> enemyCards = new TreeMap<>(vBoxComparator);
-
-
+    private boolean playerTurn = true;
+    private int scaleValue = 0;
+    private Card currentCard;
+    private final HashMap<VBox,Card> handCardMap = new HashMap<>();
+    private final TreeMap<VBox,Card> playerCards = new TreeMap<>(vBoxComparator);
+    private final TreeMap<VBox,Card> enemyCards = new TreeMap<>(vBoxComparator);
 
     public BattleManager(){
 
     }
+
+    public void addHandCard(VBox vBox,Card card) {
+        this.handCardMap.put(vBox,card);
+    }
+    public void removeHandCard(VBox vBox) {
+        this.handCardMap.remove(vBox);
+    }
+
+    public Card getHandCard(VBox vBox) {
+        return handCardMap.get(vBox);
+    }
+    public VBox getCurrentCardVBox() {
+        for(Map.Entry<VBox, Card> mapEntry : handCardMap.entrySet()) {
+            if (mapEntry.getValue() == currentCard)
+                return mapEntry.getKey();
+        }
+        return null;
+    }
+
+    public void setCurrentCard(Card currentCard) {
+        this.currentCard = currentCard;
+    }
+    public Card getCurrentCard() {
+        return this.currentCard;
+    }
+
+
     public void updateCards(HashMap<VBox,Card> newCards){
 
         for (Map.Entry<VBox, Card> mapEntry : newCards.entrySet()) {

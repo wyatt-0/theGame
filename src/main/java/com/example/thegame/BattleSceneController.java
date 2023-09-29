@@ -1,12 +1,16 @@
 package com.example.thegame;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import java.util.HashMap;
@@ -14,33 +18,98 @@ import java.util.Map;
 
 
 public class BattleSceneController {
-    Card frog = new Card(1,0,1,"Frog",new Image(getClass().getResourceAsStream("/images/frog2.png")));
-    Card cat = new Card(3,1,1,"Cat",new Image(getClass().getResourceAsStream("/images/cat.png")));
-    Card turtle = new Card(6,1,2,"Turtle",new Image(getClass().getResourceAsStream("/images/turtle.png")));
-    Card snake = new Card(3,2,2,"Snake",new Image(getClass().getResourceAsStream("/images/snake.png")));
-    Card dog = new Card(3,2,2,"Dog",new Image(getClass().getResourceAsStream("/images/dog.png")));
-
-    @FXML private Pane boardPane;
+    Card[] cardArray = new Card[]{
+            new Card(1,0,1,"Frog",new Image(getClass().getResourceAsStream("/images/frog2.png"))),
+            new Card(3,1,1,"Cat",new Image(getClass().getResourceAsStream("/images/cat.png"))),
+            new Card(6,1,2,"Turtle",new Image(getClass().getResourceAsStream("/images/turtle.png"))),
+            new Card(3,2,2,"Snake",new Image(getClass().getResourceAsStream("/images/snake.png"))),
+            new Card(3,2,2,"Dog",new Image(getClass().getResourceAsStream("/images/dog.png")))
+    };
+    @FXML private HBox boardHBox;
+    @FXML private HBox handHBox;
     @FXML public Pane battleScenePane;
-    private BattleManager test = new BattleManager();
+    private final BattleManager bm = new BattleManager();
     HashMap<VBox,Card> cardMap = new HashMap<>();
-
     @FXML public Label scale;
     @FXML protected void initialize(){
-        for (Node node: boardPane.getChildren()) {
+        for (Node node: boardHBox.getChildren()) {
             if (node instanceof final VBox vBox) {
-                cardMap.put(vBox,null);
+                for (Node innerNode: vBox.getChildren()) {
+                    if (innerNode instanceof final VBox innerVBox) {
+                        cardMap.put(innerVBox, null);
+                    }
+                }
             }
         }
     }
-
-    @FXML protected void onMouseClick(MouseEvent event) {
+    @FXML protected void onMouseClickDeck(MouseEvent event) {
         VBox vbox = (VBox) findVbox(event.getPickResult().getIntersectedNode());
-        if (vbox == null || !vbox.getId().contains("CardContainer"))
+
+        if (vbox == null)
             return;
-        cardMap.put(vbox, new Card(dog));
+
+        double computedSize = Region.USE_COMPUTED_SIZE;
+        int i = vbox.getId().contains("card")? (int) (Math.random()*((cardArray.length-1 -1)+1))+1: 0;
+        Card card = new Card(cardArray[i]);
+
+        Label nameLabel = new Label();
+        nameLabel.setText(card.getName());
+        nameLabel.setPrefSize(computedSize,computedSize);
+
+        Label soulsLabel = new Label();
+        soulsLabel.setText("S " + card.getSouls());
+        soulsLabel.setPrefSize(computedSize,computedSize);
+        soulsLabel.setTranslateX(48);
+        soulsLabel.setTranslateY(-10);
+
+        Label healthLabel = new Label();
+        healthLabel.setText("H " + card.getHealth());
+        healthLabel.setPrefSize(computedSize,computedSize);
+        healthLabel.setTranslateX(-40);
+        healthLabel.setTranslateY(80);
+
+        Label damageLabel = new Label();
+        damageLabel.setText("D " + card.getDamage());
+        damageLabel.setPrefSize(computedSize,computedSize);
+        damageLabel.setTranslateX(40);
+
+        Separator separator = new Separator();
+        separator.setOpacity(0);
+
+        ImageView image = new ImageView();
+        image.setImage(card.getImage());
+        image.setFitWidth(110);
+        image.setFitHeight(66);
+        image.setTranslateY(-20);
+
+        VBox cardVBox = new VBox(nameLabel,soulsLabel,healthLabel,separator,image,damageLabel);
+        cardVBox.setId("handCardContainer");
+        cardVBox.setOnMouseClicked(this::onMouseClickHand);
+        cardVBox.setPrefSize(computedSize,computedSize);
+        cardVBox.setStyle("-fx-border-color: black");
+        cardVBox.setAlignment(Pos.CENTER);
+        handHBox.getChildren().add(cardVBox);
+        bm.addHandCard(cardVBox,card);
+
+    }
+    @FXML protected void onMouseClickHand(MouseEvent event) {
+        VBox vbox = (VBox) findVbox(event.getPickResult().getIntersectedNode());
+
+        if (vbox == null)
+            return;
+        bm.setCurrentCard(bm.getHandCard(vbox));
+    }
+    @FXML protected void onMouseClickBoard(MouseEvent event) {
+        VBox vbox = (VBox) findVbox(event.getPickResult().getIntersectedNode());
+        if (vbox == null || bm.getCurrentCard() == null)
+            return;
+        cardMap.put(vbox, bm.getCurrentCard());
+        handHBox.getChildren().remove(bm.getCurrentCardVBox());
+        bm.removeHandCard(bm.getCurrentCardVBox());
+        bm.setCurrentCard(null);
         cardDisplay();
     }
+
      private void cardDisplay() {
         for (Map.Entry<VBox, Card> mapEntry : cardMap.entrySet()) {
             Card card = mapEntry.getValue();
@@ -77,8 +146,8 @@ public class BattleSceneController {
         }
     }
     @FXML protected void onButtonClick() {
-        test.updateCards(cardMap);
-        test.fight(this);
+        bm.updateCards(cardMap);
+        bm.fight(this);
         cardDisplay();
     }
     protected Node findVbox(Node node) {
