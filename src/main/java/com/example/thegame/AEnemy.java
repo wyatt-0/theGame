@@ -1,32 +1,36 @@
 package com.example.thegame;
 
-import javafx.scene.layout.VBox;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public abstract class AEnemy {
-    ArrayList<HashMap<VBox, Card>> movesArray;
-    private int turnCounter = 0;
+    List<HashMap<String, Card>> movesArray = new ArrayList<>();
+    private int turnCounter = -1;
 
-    public AEnemy(ArrayList<HashMap<VBox, Card>> moves) {
-        movesArray = moves;
+    public AEnemy() {
+        loadMoves();
     }
 
-    public ArrayList<HashMap<VBox, Card>> getMovesArray() {
+    public abstract void loadMoves();
+
+    public abstract void endScene(boolean win, BattleSceneController bsc);
+
+
+    public List<HashMap<String, Card>> getMovesArray() {
         return movesArray;
     }
 
-    public HashMap<VBox, Card> getCurrentMove() {
+    public HashMap<String, Card> getCurrentTurn() {
+        this.turnCounter++;
+        if (turnCounter >= movesArray.size()) {
+            return new HashMap<>();
+        }
         return movesArray.get(turnCounter);
     }
 
     public int getTurnCounter() {
         return turnCounter;
-    }
-
-    public void addTurnCounter() {
-        this.turnCounter++;
     }
 
 

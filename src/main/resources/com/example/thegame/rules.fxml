@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="rulesPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.thegame.RulesController">
+    <children>
+        <Label alignment="CENTER" layoutX="151.0" layoutY="7.0" prefWidth="500.0" text="Rulebook" underline="true">
+            <font>
+                <Font name="Monospaced Bold" size="50.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="36.0" layoutY="86.0" prefHeight="45.0" prefWidth="701.0" text="How to play: ">
+            <font>
+                <Font name="Monospaced Bold" size="25.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="52.0" layoutY="297.0" prefHeight="140.0" prefWidth="412.0" text="This is a blank card:">
+            <font>
+                <Font name="Monospaced Bold" size="20.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="53.0" layoutY="119.0" prefHeight="150.0" prefWidth="655.0" text="You start with 1 frog card and 3 random cards from your deck. The objective is to beat your opponent by 8 points to win the game. To place a new card you must sacrifice existing cards up to the soul cost of the card you are summoning. Frog cards cost 0 souls" textOverrun="CLIP" wrapText="true">
+            <font>
+                <Font name="Monospaced Bold" size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="497.0" layoutY="341.0" prefHeight="17.0" prefWidth="244.0" text="&lt;-- this is the soul cost">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="235.0" fitWidth="168.0" layoutX="334.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/cardBackground2.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="499.0" layoutY="492.0" prefHeight="17.0" prefWidth="244.0" text="&lt;-- this is the health">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="124.0" layoutY="493.0" prefHeight="17.0" prefWidth="244.0" text="this is the damage --&gt;">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="354.0" layoutY="531.0" prefHeight="17.0" prefWidth="244.0" text="this:^^^ is the sigil">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="391.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/noSigil.png" />
+            </image>
+        </ImageView>
+        <Label alignment="TOP_LEFT" layoutX="38.0" layoutY="557.0" prefHeight="45.0" prefWidth="701.0" text="Sigils:">
+            <font>
+                <Font name="Monospaced Bold" size="25.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="104.0" layoutY="608.0" prefHeight="34.0" prefWidth="412.0" text="None: card has no sigil">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="101.0" layoutY="795.0" prefHeight="57.0" prefWidth="257.0" text="Undead: if this card is killed on the board it is put back into your hand" wrapText="true">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="99.0" layoutY="863.0" prefHeight="61.0" prefWidth="263.0" text="Flight: this card will fly over any card in front of it and hit you directly" wrapText="true">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="101.0" layoutY="670.0" prefHeight="45.0" prefWidth="269.0" text="Poison: any card attacked by this card will die isntantly" wrapText="true">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="101.0" layoutY="731.0" prefHeight="54.0" prefWidth="256.0" text="Bramble: any card that hits this card will take 1 damage" wrapText="true">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="438.0" layoutY="598.0" prefHeight="58.0" prefWidth="324.0" text="Hunter: this card can block the attacks of cards with flight" wrapText="true">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="435.0" layoutY="804.0" prefHeight="67.0" prefWidth="293.0" text="Smelly: any card opposite this one loses 1 damage" wrapText="true">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="437.0" layoutY="668.0" prefHeight="55.0" prefWidth="292.0" text="Bloodthirsty: if this card kills an opponent it gains +1 damage" wrapText="true">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_LEFT" layoutX="435.0" layoutY="728.0" prefHeight="59.0" prefWidth="297.0" text="Arms: this card will hit every space on the enemys side of the board" wrapText="true">
+            <font>
+                <Font name="Monospaced Bold" size="15.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="42.0" layoutY="597.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/noSigil.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="43.0" layoutY="668.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/PoisonSigil.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="43.0" layoutY="730.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/BrambleSigil.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="43.0" layoutY="795.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/UndeadSigil.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="44.0" layoutY="861.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/flightSigil.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="379.0" layoutY="599.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/HunterSigil.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="379.0" layoutY="668.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/BloodthirstySigil.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="379.0" layoutY="732.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/ArmsSigil.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="378.0" layoutY="794.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/SmellySigil.png" />
+            </image>
+        </ImageView>
+        <Button layoutX="514.0" layoutY="894.0" mnemonicParsing="false" onAction="#menuButton" prefHeight="57.0" prefWidth="104.0" text="Main Menu" />
+    </children>
+</Pane>

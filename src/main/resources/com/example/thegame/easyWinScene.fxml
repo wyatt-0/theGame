@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="mapScenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.thegame.EasyWinSceneController">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="278.0" layoutY="-189.0" prefHeight="566.0" prefWidth="1002.0" text="Proud of the easy level?" textAlignment="CENTER">
+            <font>
+                <Font name="Monospaced Bold" size="63.0" />
+            </font>
+        </Label>
+        <Button fx:id="endSceneHardButton" layoutX="681.0" layoutY="446.0" mnemonicParsing="false" onAction="#easyWinHardButton" prefHeight="106.0" prefWidth="188.0" text="HARD">
+         <font>
+            <Font name="Monospaced Bold" size="44.0" />
+         </font></Button>
+      <Button fx:id="endSceneMainMenuButton" layoutX="678.0" layoutY="661.0" mnemonicParsing="false" onAction="#easyMenuButton" prefHeight="106.0" prefWidth="188.0" text="Main Menu">
+         <font>
+            <Font name="Monospaced Bold" size="27.0" />
+         </font>
+      </Button>
+    </children>
+</Pane>
