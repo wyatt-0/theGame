@@ -298,7 +298,7 @@
                                         </VBox>
                                         <VBox fx:id="playerCardContainer4" alignment="TOP_CENTER" fillWidth="false" maxHeight="295.0" maxWidth="180.0" minHeight="295.0" minWidth="180.0" onMouseClicked="#onMouseClickBoard" translateY="-43.0" VBox.vgrow="ALWAYS">
                                             <children>
-                                    <Label fx:id="cardName221121" alignment="TOP_CENTER">
+                                    <Label fx:id="cardName221121" alignment="TOP_CENTER" translateY="20.0">
                                        <font>
                                           <Font name="Monospaced Bold" size="30.0" />
                                        </font>
